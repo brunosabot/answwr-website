@@ -6,10 +6,23 @@
   <title>Answwr</title>
   <meta name="description" content="Answwr is a cool and modern decision maker, so cool that you’d think there is an AI
   managing the thing." />
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://play.google.com" />
+  <link rel="preconnect" href="https://www.google-analytics.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="apple-touch-icon" href="/icon.png">
   <link rel="icon" type="image/png" href="icon.png">
+  <style>
+*{box-sizing:border-box;}
+body{background-color:#292929;color:#eee;font-family:'Lato', sans-serif;font-weight:400;margin:0;}
+.content{align-items:center;display:flex;flex-direction:column;margin:auto;max-width:100%;padding:32px;width:464px;}
+.store-link{background-image:linear-gradient(135deg, #f5bc0e, #fe6e60, #7360fe, #4ac2f5);color:#999;display:block;margin-bottom:48px;padding:5px;text-decoration:none;width:100%;}
+.store-link__content{background-color:#292929;display:block;padding:40px;text-align:center;}
+.store-link__title{color:#ffffff;font-size:24px;font-weight:900;margin:0 0 16px 0;text-align:center;}
+.store-link__wr{margin-left:-0.44em;}
+.google-play{display:block;margin:40px auto 0 auto;width:200px;}
+.google-play__image{border-radius:4px;max-width:100%;}
+.paragraph{line-height:1.5;margin:0 0 24px 0;text-align:center;}
+  </style>
 </head>
 <body>
   <main class="content">
@@ -21,7 +34,7 @@
     >
       <div class="store-link__content">
         <h1 class="store-link__title">answ<span class="store-link__wr">wr</span></h1>
-        <div>You'd think there is an IA in there,</div>
+        <div>You’d think there is an IA in there,</div>
         <div>but really, there is not.</div>
       </div>
     </a>
@@ -35,7 +48,7 @@
       unbiased random result.
     </p>
     <p class="paragraph">
-      It's important to precise the result will be totally fair and unbiased, that's why we made
+      It’s important to precise the result will be totally fair and unbiased, that’s why we made
       the Redo button.
     </p>
     <a
@@ -60,6 +73,22 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-145832530-1');
-  </script>
+
+    WebFontConfig = {
+      classes: false,
+      events: false,
+      google: {
+        families: ['Lato:400,900'],
+        text: ',.AIRWY%20abcdefghiklmnoprstuvwy%E2%80%99'
+      }
+    };
+
+    (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+      wf.async = true;
+      s.parentNode.insertBefore(wf, s);
+    })(document);
+</script>
 </body>
 </html>
