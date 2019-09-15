@@ -27,12 +27,7 @@ jobs:
       - name: Configure docker with Google Cloud
         uses: actions/gcloud/cli@master
         with:
-          args: "auth configure-docker"
-
-      - name: Install required Google Cloud dependencies
-        uses: actions/gcloud/cli@master
-        with:
-          args: "components install docker-credential-gcr"
+          args: "auth configure-docker --verbosity debug --quiet"
 
       - name: Build Docker image
         uses: actions/docker/cli@master
@@ -40,9 +35,9 @@ jobs:
           args: "build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
 
       - name: Push image to Google Cloud
-        uses: actions/gcloud/cli@master
+        uses: actions/docker/cli@master
         with:
-          args: "docker -- push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website@latest"
+          args: "push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
 
       - name: Deploy on cloud run
         uses: actions/gcloud/cli@master
