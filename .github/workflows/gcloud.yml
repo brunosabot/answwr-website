@@ -40,9 +40,9 @@ jobs:
           args: "build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
 
       - name: Push image to Google Cloud
-        uses: actions/docker/cli@master
+        uses: actions/gcloud/cli@master
         with:
-          args: "push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
+          args: "docker -- push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website@latest"
 
       - name: Deploy on cloud run
         uses: actions/gcloud/cli@master
