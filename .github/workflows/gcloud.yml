@@ -9,6 +9,11 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v1
 
+      - name: Build Docker image
+        uses: actions/docker/cli@master
+        with:
+          args: "build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
+
       - name: Authenticate
         uses: actions/gcloud/auth@master
         env:
@@ -17,7 +22,7 @@ jobs:
       - name: Install Beta components
         uses: actions/gcloud/cli@master
         with:
-          args: "components install beta"
+          args: "components install beta --quiet"
 
       - name: Activate the project
         uses: actions/gcloud/cli@master
@@ -28,11 +33,6 @@ jobs:
         uses: actions/gcloud/cli@master
         with:
           args: "auth configure-docker --quiet"
-
-      - name: Build Docker image
-        uses: actions/docker/cli@master
-        with:
-          args: "build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
 
       - name: Push image to Google Cloud Registry
         uses: actions/gcloud/cli@master
