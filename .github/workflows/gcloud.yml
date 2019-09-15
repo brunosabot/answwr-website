@@ -30,7 +30,7 @@ jobs:
           entrypoint: sh
           args: -c "docker push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
 
-      - name: Deploy on cloud run
+      - name: Install beta commands and deploy on cloud run
         uses: actions/gcloud/cli@master
         with:
           args: "components install beta --quiet && gcloud beta run deploy answwr-website --quiet --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website --project ${{ secrets.GCLOUD_PROJECT }} --region europe-west1 --platform managed"
