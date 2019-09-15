@@ -24,12 +24,22 @@ jobs:
         with:
           args: "config set project ${{ secrets.GCLOUD_PROJECT }}"
 
+      - name: Configure docker with Google Cloud
+        uses: actions/gcloud/cli@master
+        with:
+          args: "auth configure-docker"
+
+      - name: Install required Google Cloud dependencies
+        uses: actions/gcloud/cli@master
+        with:
+          args: "components install docker-credential-gcr"
+
       - name: Build Docker image
         uses: actions/docker/cli@master
         with:
           args: "build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
 
-      - name: Install Beta components
+      - name: Push image to Google Cloud
         uses: actions/docker/cli@master
         with:
           args: "push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
