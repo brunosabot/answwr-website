@@ -43,4 +43,4 @@ jobs:
       - name: Deploy on cloud run
         uses: actions/gcloud/cli@master
         with:
-          args: "beta run deploy --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website --quiet"
+          args: "beta run deploy --quiet --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
