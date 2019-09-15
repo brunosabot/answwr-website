@@ -19,11 +19,6 @@ jobs:
         env:
           GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
 
-      - name: Install Beta components
-        uses: actions/gcloud/cli@master
-        with:
-          args: "components install beta --quiet"
-
       - name: Activate the project
         uses: actions/gcloud/cli@master
         with:
@@ -43,4 +38,4 @@ jobs:
       - name: Deploy on cloud run
         uses: actions/gcloud/cli@master
         with:
-          args: "beta run deploy --quiet --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
+          args: "components install beta --quiet && gcloud beta run deploy --quiet --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
