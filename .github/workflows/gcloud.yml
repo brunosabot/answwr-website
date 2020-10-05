@@ -1,36 +1,34 @@
-name: Deploy to Now
-on: [push]
+name: Deploy the application to Google Cloud Run
+on:
+  push:
+    branches:
+      - "master"
 
 jobs:
   deploy:
-    name: Deploy on Google Cloud Run
+    name: Deploy job
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v1
 
       - name: Build Docker image
-        uses: actions/docker/cli@master
-        with:
-          args: "build . --tag gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
+        run: |
+          docker build . --tag eu.gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
 
-      - name: Authenticate
-        uses: actions/gcloud/auth@master
-        env:
-          GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
-
-      - name: Configure docker with Google Cloud
-        uses: actions/gcloud/cli@master
+      - name: Authenticate into Google Cloud Platform
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
-          args: "auth configure-docker --quiet"
+          service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+          service_account_key: ${{ secrets.GCLOUD_AUTH }}
 
-      - name: Push image to Google Cloud Registry
-        uses: actions/gcloud/cli@master
-        with:
-          entrypoint: sh
-          args: -c "docker push gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website"
+      - name: Configure Docker to use Google Cloud Platform
+        run: "gcloud auth configure-docker --quiet"
+
+      - name: Push image to Google Cloud Container Registry
+        run: docker push eu.gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }}
 
       - name: Install beta commands and deploy on cloud run
-        uses: actions/gcloud/cli@master
-        with:
-          args: "components install beta --quiet && gcloud beta run deploy answwr-website --quiet --image gcr.io/${{ secrets.GCLOUD_PROJECT }}/answwr-website --project ${{ secrets.GCLOUD_PROJECT }} --region europe-west1 --platform managed"
+        run: |
+          gcloud components install beta --quiet
+          gcloud beta run deploy ${{ secrets.GCLOUD_APP_NAME }} --quiet --image eu.gcr.io/${{ secrets.GCLOUD_PROJECT }}/${{ secrets.GCLOUD_APP_NAME }} --project ${{ secrets.GCLOUD_PROJECT }} --region europe-west1 --platform managed
