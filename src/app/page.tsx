@@ -27,13 +27,20 @@ export default function Home() {
         </div>
       </a>
       <p className={classes.paragraph}>
-        Answwr is a cool and modern decision maker, so cool that you&rsquo;d
-        think there is an AI managing the thing.
+        <span className={classes.paragraphAnswwr}>
+          Answ<span className={classes.paragraphWr}>wr</span>
+        </span>{" "}
+        is a cool and modern decision maker, so cool that you&rsquo;d think
+        there is an AI managing the thing.
       </p>
       <p className={classes.paragraph}>
-        With Answwr you&rsquo;ll be able to decide between choices in the most
-        elegant ways, meaning you&rsquo;ll have to fill a bunch of forms, hit a
-        green button and generate a totally fair and unbiased random result.
+        With{" "}
+        <span className={classes.paragraphAnswwr}>
+          Answ<span className={classes.paragraphWr}>wr</span>
+        </span>{" "}
+        you&rsquo;ll be able to decide between choices in the most elegant ways,
+        meaning you&rsquo;ll have to fill a bunch of forms, hit a green button
+        and generate a totally fair and unbiased random result.
       </p>
       <p className={classes.paragraph}>
         It&rsquo;s important to precise the result will be totally fair and

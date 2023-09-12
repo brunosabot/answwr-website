@@ -67,3 +67,12 @@
   margin: 0 0 24px 0;
   text-align: center;
 }
+.paragraphWr {
+  margin-left: -0.44em;
+}
+.paragraphAnswwr {
+  background-image: linear-gradient(135deg, #f5bc0e, #fe6e60, #7360fe, #4ac2f5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
