@@ -23,6 +23,7 @@ export default function Home() {
           </h1>
           <div>You&rsquo;d think there is an IA in there,</div>
           <div>but really, there is not.</div>
+          <div className={classes.storeLinkBackground}></div>
         </div>
       </a>
       <p className={classes.paragraph}>
