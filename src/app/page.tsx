@@ -44,7 +44,8 @@ export default function Home() {
       </p>
       <p className={classes.paragraph}>
         It&rsquo;s important to precise the result will be totally fair and
-        unbiased, that&rsquo;s why we made the Redo button.
+        unbiased, that&rsquo;s why we made the Redo button. And the edit button.
+        And the quietly remove choice button.
       </p>
       <a
         className={classes.googlePlay}
